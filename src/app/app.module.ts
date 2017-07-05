@@ -12,6 +12,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ReposService} from './repos.service';
 import {SearchComponent} from './search/search.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {SearchComponent} from './search/search.component';
         CardListComponent,
         DashboardComponent,
         SearchComponent,
+        DetailComponent,
     ],
     imports: [
         BrowserModule,

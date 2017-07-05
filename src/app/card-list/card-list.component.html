@@ -3,12 +3,10 @@
         <div class="col-xs-12">
             <h3>Username: {{userName}}</h3>
             <ul class="heroes" *ngIf="repos">
-                <li *ngFor="let repo of repos">
-                    {{repo.id}}
-                    {{repo.name}}
-                    {{repo.full_name}}
-                    {{repo.html_url}}
-                </li>
+                <app-card
+                        *ngFor="let repo of repos"
+                        [repo]="repo">
+                </app-card>
             </ul>
             <div *ngIf="repos && repos.length < 0">No repositories</div>
             <div *ngIf="warn">
