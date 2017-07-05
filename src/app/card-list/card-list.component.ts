@@ -1,33 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {Repo} from '../class/repo';
+import {Warning} from '../class/warn';
 import {ReposService} from '../repos.service';
-import {ActivatedRoute, ParamMap } from '@angular/router';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-card-list',
-    template: `
-        <div>
-            <h3>{{userName}}</h3>
-            <ul class="heroes" *ngIf="repos">
-                <li *ngFor="let repo of repos">
-                    {{repo.id}}
-                    {{repo.name}}
-                    {{repo.full_name}}
-                    {{repo.html_url}}
-                </li>
-            </ul>
-            <div *ngIf="empty && !warn">No repositories</div>
-            <div *ngIf="warn">{{warnMessage}}</div>
-        </div>
-    `,
-    styles: []
+    templateUrl: './card-list.component.html',
+    styleUrls: ['./card-list.component.css'],
 })
 export class CardListComponent implements OnInit {
     repos: Repo[];
     warn = false;
-    empty = false;
-    warnMessage: string;
+    warnMessage: Warning;
     userName: string;
 
     constructor(private reposService: ReposService,
@@ -41,15 +27,13 @@ export class CardListComponent implements OnInit {
                 this.userName = userLogin;
                 this.reposService.getRepos(userLogin)
                     .then(repos => {
-                        this.empty = repos.length === 0;
                         this.warn = false;
                         this.repos = repos
                     })
                     .catch(error => {
                         this.warn = true;
-                        this.empty = false;
                         this.repos = [];
-                        this.warnMessage = error.statusText
+                        this.warnMessage = error;
                     });
             }
         });

@@ -6,10 +6,11 @@ import {CardComponent} from './card/card.component';
 import {CardListComponent} from './card-list/card-list.component';
 
 const routes: Routes = [
-    {path: '', redirectTo: '/repos', pathMatch: 'full'},
-    {path: 'repos', component: DashboardComponent},
+    {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+    {path: 'dashboard', component: DashboardComponent},
     // {path: 'detail/:id', component: CardComponent},
-    {path: 'repos/:userLogin', component: CardListComponent}
+    {path: 'repos/:userLogin', component: CardListComponent},
+    // {path: 'repos/:userLogin/detail/:repoName', component: CardComponent}
 ];
 
 @NgModule({

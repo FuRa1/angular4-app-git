@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Username: {{userName}}</h3>
+            <ul class="heroes" *ngIf="repos">
+                <li *ngFor="let repo of repos">
+                    {{repo.id}}
+                    {{repo.name}}
+                    {{repo.full_name}}
+                    {{repo.html_url}}
+                </li>
+            </ul>
+            <div *ngIf="repos && repos.length < 0">No repositories</div>
+            <div *ngIf="warn">
+                <div *ngIf="warnMessage.status === 403">
+                    Rate limit for your ip exceeded : {{warnMessage.statusText | uppercase}}
+                </div>
+                <div *ngIf="warnMessage.status === 404">
+                    User is: {{warnMessage.statusText | uppercase}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

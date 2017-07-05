@@ -1,10 +1,4 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-</nav>
-<div>
-  <input [(ngModel)]="userLogin" placeholder="name" (keyup.enter)="goToCardList(userLogin)">
-  <button (click)='goToCardList(userLogin)'>find repos</button>
-</div>
+<app-header></app-header>
+<app-search></app-search>
 <router-outlet></router-outlet>
 
