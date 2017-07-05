@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Repo} from '../class/repo';
 import {Warning} from '../class/warn';
 import {ReposService} from '../repos.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
-import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-card-list',

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="search-wrap">
-        <input [(ngModel)]="userLogin" placeholder="name" (keyup.enter)="goToCardList(userLogin)">
+        <input [(ngModel)]="userLogin" placeholder="Enter user" (keyup.enter)="goToCardList(userLogin)">
         <button (click)='goToCardList(userLogin)'>find repos</button>
       </div>
     </div>
