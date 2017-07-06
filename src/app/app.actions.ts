@@ -1,23 +1,16 @@
 import {Injectable} from '@angular/core';
-
-interface Action { type: string; payload?: any; }
+import {actionTypes} from './constants';
+import {baseUrl} from './constants';
 
 @Injectable()
 
-export class CounterActions {
-  static INCREMENT = 'INCREMENT';
-  static DECREMENT = 'DECREMENT';
-  static FINDREPOS = 'FINDREPOS';
-
-  increment(): Action {
-    return {type: CounterActions.INCREMENT};
-  }
-
-  decrement(): Action {
-    return {type: CounterActions.DECREMENT};
-  }
-
-  findRepos(payload): Action {
-    return {type: CounterActions.FINDREPOS, payload}
+export class CoreActions {
+  findRepos(userName) {
+    return (dispatch) => {
+      dispatch(actionTypes.PENDINGREPOS);
+      fetch(`${baseUrl}/users/${userName}/repos`)
+        .then(response => dispatch(actionTypes.SETREPOS, response.json()))
+        .catch(error => dispatch(actionTypes.ERRORREPOS));
+    }
   }
 }

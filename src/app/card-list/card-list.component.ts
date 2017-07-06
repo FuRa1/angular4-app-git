@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Repo} from '../class/repo';
-import {Warning} from '../class/warn';
 import {ReposService} from '../repos.service';
 import {ActivatedRoute} from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
 
 import {NgRedux, select} from '@angular-redux/store';
-import {CounterActions} from '../app.actions';
-import {IAppState} from '../store';
+import {CoreActions} from '../app.actions';
+import {IAppState} from '../app.store';
 
 @Component({
   selector: 'app-card-list',
@@ -17,28 +16,25 @@ import {IAppState} from '../store';
 })
 export class CardListComponent implements OnInit {
   repos: Repo[];
-  warn = false;
-  warnMessage: Warning;
   userName: string;
-  @select() readonly count$: Observable<number>;
   @select() readonly repos$: Observable<Repo[]>;
 
   constructor(private ngRedux: NgRedux<IAppState>,
               private reposService: ReposService,
               private route: ActivatedRoute,
-              private actions: CounterActions) {
-  }
-
-  increment() {
-    this.ngRedux.dispatch(this.actions.increment()); // <- New
-  }
-
-  decrement() {
-    this.ngRedux.dispatch(this.actions.decrement()); // <- New
+              private actions: CoreActions) {
+    // ngRedux.mapDispatchToTarget((dispatch) => {
+    //   return {
+    //     login: (credentials) => dispatch(
+    //       this.sessionActions.loginUser(credentials)),
+    //     logout: () => dispatch(
+    //       this.sessionActions.logoutUser())
+    //   };
+    // })(this);
   }
 
   findRepos(userName) {
-    this.ngRedux.dispatch(this.actions.findRepos(userName)); // <- New
+    this.ngRedux.dispatch(this.actions.findRepos(userName));
   }
 
   // findRepos(): void {
@@ -68,11 +64,6 @@ export class CardListComponent implements OnInit {
         this.findRepos(userLogin);
       }
     });
-    // this.findRepos();
   }
-
-  // goBack(): void {
-  //     this.location.back();
-  // }
 
 }

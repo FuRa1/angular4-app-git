@@ -23,8 +23,17 @@ import {NavbarComponent} from './navbar/navbar.component';
 
 // redux
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
-import { rootReducer, IAppState, INITIAL_STATE } from './store';
-import { CounterActions } from './app.actions';
+import { IAppState } from './app.store';
+import thunk from 'redux-thunk';
+import { coreReducer } from './app.reducer';
+import { CoreActions } from './app.actions';
+
+import { Store, createStore, applyMiddleware} from 'redux';
+
+export const store = createStore(
+  coreReducer,
+  applyMiddleware(thunk)
+) as Store<IAppState>;
 
 
 @NgModule({
@@ -50,18 +59,15 @@ import { CounterActions } from './app.actions';
     MdCardModule,
     NgReduxModule,
   ],
-  providers: [ReposService, CounterActions],
+  providers: [ReposService, CoreActions],
   bootstrap: [AppComponent]
 })
 
 
+
+
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
-    // Tell @angular-redux/store about our rootReducer and our initial state.
-    // It will use this to create a redux store for us and wire up all the
-    // events.
-    ngRedux.configureStore(
-      rootReducer,
-      INITIAL_STATE);
+    ngRedux.provideStore(store);
   }
 }

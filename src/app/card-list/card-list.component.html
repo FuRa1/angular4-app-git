@@ -1,20 +1,18 @@
 <app-search></app-search>
 <div class="list-wrp">
-    Count: {{ count$ | async }}
-    <button (click)="increment()">+</button>
-    <button (click)="decrement()">-</button>
-    <ul *ngIf="repos">
-        <li *ngFor="let repo of repos">
+    <!--Count: {{ count$ | async }}-->
+    <ul *ngIf="repos$">
+        <li *ngFor="let repo of repos$ | async">
             <app-card [repo]="repo"></app-card>
         </li>
     </ul>
-    <div *ngIf="repos && repos.length < 0">No repositories</div>
-    <div *ngIf="warn">
-        <div *ngIf="warnMessage.status === 403">
-            Rate limit for your ip exceeded : {{warnMessage.statusText | uppercase}}
-        </div>
-        <div *ngIf="warnMessage.status === 404">
-            User is: {{warnMessage.statusText | uppercase}}
-        </div>
-    </div>
+    <!--<div *ngIf="repos && repos.length < 0">No repositories</div>-->
+    <!--<div *ngIf="warn">-->
+        <!--<div *ngIf="warnMessage.status === 403">-->
+            <!--Rate limit for your ip exceeded : {{warnMessage.statusText | uppercase}}-->
+        <!--</div>-->
+        <!--<div *ngIf="warnMessage.status === 404">-->
+            <!--User is: {{warnMessage.statusText | uppercase}}-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
