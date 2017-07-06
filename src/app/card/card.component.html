@@ -1,7 +1,19 @@
-<div>
-    <h4>{{repo.full_name}}</h4>
-    <div>
-        <a href="{{repo.html_url}}" target="_blank"> Open on GitHub</a>
-    </div>
-    <!--<a [routerLink]="[{ path: 'detail/:id', component: DetailComponent }]" routerLinkActive="active"></a>-->
-</div>
+<md-card>
+    <md-card-header>
+        <div md-card-avatar></div>
+        <md-card-title>{{repo.name}}</md-card-title>
+        <!--<md-card-subtitle>{{repo.name}}</md-card-subtitle>-->
+    </md-card-header>
+    <img md-card-image src="{{repo.owner.avatar_url}}">
+    <md-card-content>
+        <p>
+            {{repo.description}}
+        </p>
+        <p>Clone url: <span>{{repo.clone_url}}</span></p>
+    </md-card-content>
+    <md-card-actions>
+        <a md-button href="{{repo.html_url}}" target="_blank"> View on GitHub</a>
+        <a [routerLink]="[{ path: 'detail/:id' }]"
+           md-button href="{{repo.html_url}}" target="_blank"> Detail information</a>
+    </md-card-actions>
+</md-card>

@@ -1,23 +1,19 @@
 <app-search></app-search>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <h3>User name: {{userName}}</h3>
-            <ul class="heroes" *ngIf="repos">
-                <app-card
-                        *ngFor="let repo of repos"
-                        [repo]="repo">
-                </app-card>
-            </ul>
-            <div *ngIf="repos && repos.length < 0">No repositories</div>
-            <div *ngIf="warn">
-                <div *ngIf="warnMessage.status === 403">
-                    Rate limit for your ip exceeded : {{warnMessage.statusText | uppercase}}
-                </div>
-                <div *ngIf="warnMessage.status === 404">
-                    User is: {{warnMessage.statusText | uppercase}}
-                </div>
-            </div>
+<div class="list-wrp">
+    <h3>User name: {{userName}}</h3>
+    <ul *ngIf="repos">
+        <li *ngFor="let repo of repos">
+            <app-card [repo]="repo"></app-card>
+        </li>
+
+    </ul>
+    <div *ngIf="repos && repos.length < 0">No repositories</div>
+    <div *ngIf="warn">
+        <div *ngIf="warnMessage.status === 403">
+            Rate limit for your ip exceeded : {{warnMessage.statusText | uppercase}}
+        </div>
+        <div *ngIf="warnMessage.status === 404">
+            User is: {{warnMessage.statusText | uppercase}}
         </div>
     </div>
 </div>

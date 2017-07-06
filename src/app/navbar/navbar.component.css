@@ -1,0 +1,32 @@
+.docs-navbar{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 8px 16px;
+    background: #673ab7;
+}
+.docs-angular-logo {
+    height: 26px;
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+}
+.docs-button, .docs-button:hover ,.docs-button:focus{
+    color: #ffffff;
+    text-decoration: none;
+}
+.docs-github-logo {
+    height: 21px;
+    margin: 0 7px 2px 0;
+    vertical-align: middle;
+}
+app-navbar{
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    position: relative;
+    z-index: 10;
+    color: rgba(255, 255, 255, 0.87);
+}

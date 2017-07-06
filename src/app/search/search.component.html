@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <div class="search-wrap">
-        <input [(ngModel)]="userLogin" placeholder="Enter user" (keyup.enter)="goToCardList(userLogin)">
-        <button (click)='goToCardList(userLogin)'>find repos</button>
-      </div>
+      <md-input-container class="search-wrap">
+        <input mdInput placeholder="Enter user" [(ngModel)]="userLogin" value="Google" (keyup.enter)='goToCardList(userLogin)'/>
+      </md-input-container>
+        <button md-button (click)='goToCardList(userLogin)'>Find repos</button>
     </div>
   </div>
 </div>
