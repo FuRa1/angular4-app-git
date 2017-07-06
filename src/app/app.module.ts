@@ -3,8 +3,11 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import 'hammerjs';
+import 'whatwg-fetch';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdInputModule, MdButtonModule, MdMenuModule, MdCardModule} from '@angular/material';
+
+// components
 
 import {AppComponent} from './app.component';
 import {FooterComponent} from './footer/footer.component';
@@ -15,33 +18,50 @@ import {AppRoutingModule} from './app-routing.module';
 import {ReposService} from './repos.service';
 import {SearchComponent} from './search/search.component';
 import {DetailComponent} from './detail/detail.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import {NavbarComponent} from './navbar/navbar.component';
+
+
+// redux
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import { rootReducer, IAppState, INITIAL_STATE } from './store';
+import { CounterActions } from './app.actions';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        FooterComponent,
-        CardComponent,
-        CardListComponent,
-        DashboardComponent,
-        SearchComponent,
-        DetailComponent,
-        NavbarComponent,
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpModule,
-        BrowserAnimationsModule,
-        MdInputModule,
-        MdButtonModule,
-        MdMenuModule,
-        MdCardModule,
-    ],
-    providers: [ReposService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    CardComponent,
+    CardListComponent,
+    DashboardComponent,
+    SearchComponent,
+    DetailComponent,
+    NavbarComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpModule,
+    BrowserAnimationsModule,
+    MdInputModule,
+    MdButtonModule,
+    MdMenuModule,
+    MdCardModule,
+    NgReduxModule,
+  ],
+  providers: [ReposService, CounterActions],
+  bootstrap: [AppComponent]
 })
+
+
 export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    // Tell @angular-redux/store about our rootReducer and our initial state.
+    // It will use this to create a redux store for us and wire up all the
+    // events.
+    ngRedux.configureStore(
+      rootReducer,
+      INITIAL_STATE);
+  }
 }

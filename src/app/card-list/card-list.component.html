@@ -1,10 +1,12 @@
 <app-search></app-search>
 <div class="list-wrp">
+    Count: {{ count$ | async }}
+    <button (click)="increment()">+</button>
+    <button (click)="decrement()">-</button>
     <ul *ngIf="repos">
         <li *ngFor="let repo of repos">
             <app-card [repo]="repo"></app-card>
         </li>
-
     </ul>
     <div *ngIf="repos && repos.length < 0">No repositories</div>
     <div *ngIf="warn">
