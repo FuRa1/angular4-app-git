@@ -1,10 +1,12 @@
 <md-card>
     <md-card-header>
-        <div md-card-avatar></div>
+        <div md-card-avatar class="card-ava">
+            <img src="{{repo.owner.avatar_url}}">
+        </div>
         <md-card-title>{{repo.name}}</md-card-title>
         <!--<md-card-subtitle>{{repo.name}}</md-card-subtitle>-->
     </md-card-header>
-    <img md-card-image src="{{repo.owner.avatar_url}}">
+    <!--<img md-card-image src="{{repo.owner.avatar_url}}">-->
     <md-card-content>
         <p>
             {{repo.description}}
