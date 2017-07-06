@@ -1,6 +1,5 @@
 <app-search></app-search>
 <div class="list-wrp">
-    <h3>User name: {{userName}}</h3>
     <ul *ngIf="repos">
         <li *ngFor="let repo of repos">
             <app-card [repo]="repo"></app-card>
