@@ -9,6 +9,7 @@ export class CoreActions {
 
   getReposAsync(userName) {
     return dispatch => {
+      dispatch(this.pendingRepos());
       return axios.get(`${baseUrl}/users/${userName}/repos`)
         .then(response => {
           if (response.data && response.data.length > 0) {

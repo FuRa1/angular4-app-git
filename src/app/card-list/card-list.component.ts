@@ -27,7 +27,7 @@ export class CardListComponent implements OnInit {
         this.route.params.subscribe(params => {
             if (params['userLogin'] !== undefined) {
                 const userLogin = params['userLogin'];
-                this.userName = userLogin;
+                this.userName = userLogin; // maybe add to storage?
                 this.ngRedux.dispatch(this.actions.getReposAsync(userLogin))
             }
         });
