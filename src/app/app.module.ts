@@ -7,8 +7,7 @@ import {MdInputModule, MdButtonModule, MdMenuModule, MdCardModule} from '@angula
 
 // tools
 
-import 'hammerjs';
-import 'whatwg-fetch';
+import 'hammerjs'; // some part of @angular/material, dunno actually why :D
 
 // components
 
@@ -18,13 +17,12 @@ import {CardComponent} from './card/card.component';
 import {CardListComponent} from './card-list/card-list.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
-import {ReposService} from './repos.service';
 import {SearchComponent} from './search/search.component';
 import {DetailComponent} from './detail/detail.component';
 import {NavbarComponent} from './navbar/navbar.component';
 
 
-// redux
+// redux moves
 import {NgReduxModule, NgRedux} from '@angular-redux/store';
 import {Store, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -64,7 +62,7 @@ export const store = createStore(
         MdCardModule,
         NgReduxModule,
     ],
-    providers: [ReposService, CoreActions],
+    providers: [CoreActions],
     bootstrap: [AppComponent]
 })
 
