@@ -1,4 +1,4 @@
-# Angular4AppGit
+# Angular App Git
 
 Technologies: [Angular](https://angular.io/), [Redux](http://redux.js.org/), [Angular CLI](https://github.com/angular/angular-cli)
 
