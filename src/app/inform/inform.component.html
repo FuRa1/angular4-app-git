@@ -1,0 +1,13 @@
+<div>
+    <div *ngIf="errorOccurs$ | async">
+        {{ errorMessage$ | async | uppercase }}
+    </div>
+
+    <div *ngIf="isEmpty$ | async">
+        <div>No repositories for this user</div>
+    </div>
+
+    <div *ngIf="isPending$ | async">
+        <div>Pending...</div>
+    </div>
+</div>

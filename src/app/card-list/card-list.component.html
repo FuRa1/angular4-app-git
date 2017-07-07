@@ -1,6 +1,7 @@
 <app-search></app-search>
 <div class="list-wrp">
     <!--Count: {{ count$ | async }}-->
+    <app-inform></app-inform>
     <ul *ngIf="repos$">
         <li *ngFor="let repo of repos$ | async">
             <app-card [repo]="repo"></app-card>

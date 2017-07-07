@@ -10,60 +10,44 @@ import {CoreActions} from '../app.actions';
 import {IAppState} from '../app.store';
 
 @Component({
-  selector: 'app-card-list',
-  templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.css'],
+    selector: 'app-card-list',
+    templateUrl: './card-list.component.html',
+    styleUrls: ['./card-list.component.css'],
 })
 export class CardListComponent implements OnInit {
-  repos: Repo[];
-  userName: string;
-  @select() readonly repos$: Observable<Repo[]>;
+    repos: Repo[];
+    userName: string;
+    @select() readonly repos$: Observable<Repo[]>;
 
-  constructor(private ngRedux: NgRedux<IAppState>,
-              private reposService: ReposService,
-              private route: ActivatedRoute,
-              private actions: CoreActions) {
-    // ngRedux.mapDispatchToTarget((dispatch) => {
-    //   return {
-    //     login: (credentials) => dispatch(
-    //       this.sessionActions.loginUser(credentials)),
-    //     logout: () => dispatch(
-    //       this.sessionActions.logoutUser())
-    //   };
-    // })(this);
-  }
+    constructor(private ngRedux: NgRedux<IAppState>,
+                private reposService: ReposService,
+                private route: ActivatedRoute,
+                private actions: CoreActions) {
+    }
 
-  findRepos(userName) {
-    this.ngRedux.dispatch(this.actions.findRepos(userName));
-  }
+    initRepos(userName): void {
+        this.ngRedux.dispatch(this.actions.pendingRepos());
+        this.reposService.getRepos(userName)
+            .then(repos => {
+                if (repos.length > 0) {
+                    this.ngRedux.dispatch(this.actions.setRepos(repos));
+                } else {
+                    this.ngRedux.dispatch(this.actions.emptyRepos());
+                }
+            })
+            .catch(error => {
+                this.ngRedux.dispatch(this.actions.errorRepos(error.statusText));
+            });
+    }
 
-  // findRepos(): void {
-  //   this.route.params.subscribe(params => {
-  //     if (params['userLogin'] !== undefined) {
-  //       const userLogin = params['userLogin'];
-  //       this.userName = userLogin;
-  //       this.reposService.getRepos(userLogin)
-  //         .then(repos => {
-  //           this.warn = false;
-  //           this.repos = repos
-  //         })
-  //         .catch(error => {
-  //           this.warn = true;
-  //           this.repos = [];
-  //           this.warnMessage = error;
-  //         });
-  //     }
-  //   });
-  // }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      if (params['userLogin'] !== undefined) {
-        const userLogin = params['userLogin'];
-        this.userName = userLogin;
-        this.findRepos(userLogin);
-      }
-    });
-  }
+    ngOnInit(): void {
+        this.route.params.subscribe(params => {
+            if (params['userLogin'] !== undefined) {
+                const userLogin = params['userLogin'];
+                this.userName = userLogin;
+                this.initRepos(userLogin);
+            }
+        });
+    }
 
 }

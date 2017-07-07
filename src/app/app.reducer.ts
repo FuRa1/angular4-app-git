@@ -6,13 +6,13 @@ export interface Action { type: string; payload?: any; }
 export function coreReducer(state: IAppState, action: Action): IAppState {
   switch (action.type) {
     case actionTypes.PENDINGREPOS:
-      return {repos: [...state.repos]};
+      return { ...state, isPending: true, isEmpty: false, errorMessage: '', errorOccurs: false };
     case actionTypes.SETREPOS:
-      return {repos: [...action.payload]};
+      return { ...state, isPending: false, repos: [...action.payload] };
     case actionTypes.ERRORREPOS:
-      return {repos: [...state.repos]};
+      return { ...state, isPending: false, errorMessage: action.payload, errorOccurs: true, repos: [] };
     case actionTypes.EMPTYREPOS:
-      return {repos: []};
+      return {  ...state, isPending: false, isEmpty: true, repos: []};
   }
   return state;
 }
