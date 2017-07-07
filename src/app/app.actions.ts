@@ -12,15 +12,9 @@ export class CoreActions {
       dispatch(this.pendingRepos());
       return axios.get(`${baseUrl}/users/${userName}/repos`)
         .then(response => {
-          if (response.data && response.data.length > 0) {
-            dispatch(this.setRepos(response.data));
-          } else {
-            dispatch(this.emptyRepos());
-          }
+          (response.data && response.data.length > 0) ? dispatch(this.setRepos(response.data)) : dispatch(this.emptyRepos());
         })
-        .catch(error => {
-          dispatch(this.errorRepos(error.statusText))
-        })
+        .catch(error => dispatch(this.errorRepos(error.statusText)))
     }
   }
 
