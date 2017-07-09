@@ -1,1 +1,9 @@
-<div>DASHBOARD</div>
+<div class="dashboard-wrp">
+  <app-search></app-search>
+  <app-inform></app-inform>
+  <div class="dashboard-results">
+    <app-list [dataList]="repos$" class="dashboard-repos" [title]="'Searched Results'" (favoriteToggle) = 'addFavorites($event)'></app-list>
+    <app-list [dataList]="favorites$" class="dashboard-favorites" [title]="'Favorites'" (favoriteToggle) = 'removeFavorites($event)'></app-list>
+  </div>
+
+</div>

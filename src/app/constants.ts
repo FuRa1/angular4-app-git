@@ -4,5 +4,7 @@ export const actionTypes = {
   ERRORREPOS: 'ERRORREPOS',
   EMPTYREPOS: 'EMPTYREPOS',
   PENDINGREPOS: 'PENDINGREPOS',
+  ADDFAVORITES: 'ADDFAVORITES',
+  REMOVEFAVORITES: 'REMOVEFAVORITES',
 };
 export const baseUrl = 'https://api.github.com';

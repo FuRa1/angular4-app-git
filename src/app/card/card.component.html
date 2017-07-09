@@ -4,9 +4,7 @@
             <img src="{{repo.owner.avatar_url}}">
         </div>
         <md-card-title>{{repo.name}}</md-card-title>
-        <!--<md-card-subtitle>{{repo.name}}</md-card-subtitle>-->
     </md-card-header>
-    <!--<img md-card-image src="{{repo.owner.avatar_url}}">-->
     <md-card-content>
         <p>
             {{repo.description}}
@@ -17,5 +15,6 @@
         <a md-button href="{{repo.html_url}}" target="_blank"> View on GitHub</a>
         <a [routerLink]="[{ path: 'detail/:id' }]"
            md-button href="{{repo.html_url}}" target="_blank"> Detail information</a>
+        <a md-button (click)="ActFunc(repo.id)">Favorites</a>
     </md-card-actions>
 </md-card>

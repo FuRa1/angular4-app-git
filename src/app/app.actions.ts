@@ -33,4 +33,10 @@ export class CoreActions {
   pendingRepos() {
     return {type: actionTypes.PENDINGREPOS}
   }
+  addFavorites(payload) {
+    return {type: actionTypes.ADDFAVORITES, payload}
+  }
+  removeFavorites(payload) {
+    return {type: actionTypes.REMOVEFAVORITES, payload}
+  }
 }
