@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdInputModule, MdButtonModule, MdMenuModule, MdCardModule} from '@angular/material';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 // tools
 
@@ -12,11 +13,9 @@ import 'hammerjs'; // some part of @angular/material, dunno actually why :D
 // components
 
 import {AppComponent} from './app.component';
-import {FooterComponent} from './footer/footer.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SearchComponent} from './search/search.component';
-import {DetailComponent} from './detail/detail.component';
 import {NavbarComponent} from './navbar/navbar.component';
 
 
@@ -29,6 +28,7 @@ import {coreReducer} from './app.reducer';
 import {CoreActions} from './app.actions';
 import { InformComponent } from './inform/inform.component';
 import { ListComponent } from './list/list.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 export const store = createStore(
@@ -41,13 +41,12 @@ export const store = createStore(
 @NgModule({
     declarations: [
         AppComponent,
-        FooterComponent,
         DashboardComponent,
         SearchComponent,
-        DetailComponent,
         NavbarComponent,
         InformComponent,
         ListComponent,
+        FavoritesComponent,
     ],
     imports: [
         BrowserModule,
@@ -60,6 +59,10 @@ export const store = createStore(
         MdMenuModule,
         MdCardModule,
         NgReduxModule,
+        LocalStorageModule.withConfig({
+          prefix: 'my-app',
+          storageType: 'localStorage'
+        })
     ],
     providers: [CoreActions],
     bootstrap: [AppComponent]

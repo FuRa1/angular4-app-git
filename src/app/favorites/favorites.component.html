@@ -1,0 +1,4 @@
+<div class="favorites-wrp">
+  <app-inform></app-inform>
+  <app-list [dataList]="favorites$" class="dashboard-favorites" [title]="'Favorites'" (favoriteToggle) = 'removeFavorites($event)'></app-list>
+</div>

@@ -18,6 +18,17 @@ export class CoreActions {
     }
   }
 
+  getFavoritesReposAsync() {
+    return dispatch => {
+      dispatch(this.pendingRepos());
+      // return axios.get(`${baseUrl}/users/${userName}/repos`) // from localStorage
+      //   .then(response => {
+      //     (response.data && response.data.length > 0) ? dispatch(this.setRepos(response.data)) : dispatch(this.emptyRepos());
+      //   })
+      //   .catch(error => dispatch(this.errorRepos(error.statusText)))
+    }
+  }
+
   setRepos(payload) {
     return {type: actionTypes.SETREPOS, payload}
   }
@@ -33,9 +44,11 @@ export class CoreActions {
   pendingRepos() {
     return {type: actionTypes.PENDINGREPOS}
   }
+
   addFavorites(payload) {
     return {type: actionTypes.ADDFAVORITES, payload}
   }
+
   removeFavorites(payload) {
     return {type: actionTypes.REMOVEFAVORITES, payload}
   }

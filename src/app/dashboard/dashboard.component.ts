@@ -14,7 +14,6 @@ import {IAppState} from '../app.store';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  repos: Repo[];
   userName: string;
   @select() readonly repos$: Observable<Repo[]>;
   @select() readonly favorites$: Observable<Repo[]>;
@@ -36,11 +35,9 @@ export class DashboardComponent implements OnInit {
 
 
   addFavorites(id): void {
-    console.log(id);
     this.ngRedux.dispatch(this.actions.addFavorites(id))
   }
   removeFavorites(id): void {
-    console.log(id);
     this.ngRedux.dispatch(this.actions.removeFavorites(id))
   }
 }

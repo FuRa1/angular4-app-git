@@ -6,5 +6,6 @@ export const actionTypes = {
   PENDINGREPOS: 'PENDINGREPOS',
   ADDFAVORITES: 'ADDFAVORITES',
   REMOVEFAVORITES: 'REMOVEFAVORITES',
+  SETFAVORITESREPOS: 'SETFAVORITESREPOS',
 };
 export const baseUrl = 'https://api.github.com';

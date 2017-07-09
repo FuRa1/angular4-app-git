@@ -1,0 +1,16 @@
+ul{
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 -10px;
+
+}
+ul li{
+  flex: 1 0 300px;
+  margin: 10px;
+}
+.card-ava img{
+  max-width:100%;
+}
