@@ -13,7 +13,6 @@ import 'hammerjs'; // some part of @angular/material, dunno actually why :D
 
 import {AppComponent} from './app.component';
 import {FooterComponent} from './footer/footer.component';
-import {CardComponent} from './card/card.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SearchComponent} from './search/search.component';
@@ -43,7 +42,6 @@ export const store = createStore(
     declarations: [
         AppComponent,
         FooterComponent,
-        CardComponent,
         DashboardComponent,
         SearchComponent,
         DetailComponent,
